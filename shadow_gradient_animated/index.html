@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Анимированная градиентная тень</title>
+</head>
+<style type="text/css">
+    .body {
+        margin: 0;
+        padding: 0;
+
+        /*центруем все по центру*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+
+        background-color: #000;
+    }
+    .shadow-wrapper {
+        background-color: grey;
+        position: relative;
+        z-index:0;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .shadow {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+
+        background: linear-gradient(#000, #262626);
+        box-sizing: border-box;
+    }
+    .shadow:before,
+    .shadow:after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        right: -2px;
+        left: -2px;
+        background: linear-gradient(
+            45deg,
+            #fb0094, #0000ff, #00ff00, #ffff00, #ff0000,
+            #fb0094, #0000ff, #00ff00, #ffff00, #ff0000
+        );
+        background-size: 500%;
+        z-index: -1;
+        animation: 10s animate infinite;
+    }
+
+    .shadow:after {
+        filter: blur(25px);
+    }
+
+    @keyframes animate {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 30% 0;
+        }
+        100% {
+            background-position: 0 0; 
+        }
+    }
+
+</style>
+<body>
+    <div class="shadow-wrapper">
+        <div class="shadow"></div>
+    </div>
+</body>
+</html>
